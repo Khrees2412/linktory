@@ -1,0 +1,75 @@
+.dash-container{
+    display: flex;
+    padding: 20px;
+    justify-content: space-around;
+    align-items: center;
+    background-color: black;
+    color: white;
+}
+
+.dash-link a{
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    margin:3rem;
+}
+
+.dash-link a:visited{
+    color: inherit;
+}
+label{
+    display: inline-block;
+    margin: 10px;
+    font-size: 20px;
+    font-weight: 500;
+}
+.title{
+    margin-bottom: 10px;
+    width: 100%;
+}
+.link{
+    margin-top: 10px;
+    width: 100%;
+}
+input{
+    border: 2px solid rgb(150,150,150);
+    padding: 15px;
+    border-radius: 3px;
+    outline: 1px transparent;
+    width: 100%;
+}
+.add{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 100px auto;
+    width: 350px;
+    height: 100%;
+}
+.btn{
+    background: black ;
+    color: white;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 15px 0;
+    width: 100%;
+
+}
+.item{
+    background-color: black;
+    color: white;
+    padding: 20px;
+    margin: 20px auto;
+    width: 50%;
+}
+.logout-btn{
+    background: white ;
+    color: black;
+    border: 2px solid white;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 15px 0;
+    width: 100%;
+}
