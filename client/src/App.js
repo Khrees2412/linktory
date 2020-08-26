@@ -4,7 +4,8 @@ import './App.css';
 import {BrowserRouter as Router,Switch,Route} from "react-router-dom";
 import AddLink from "./components/AddLink"
 import {ViewLinks,LogOut,Settings} from "./components/DashComponents"
-import {LogIn, SignIn} from "./components/Onboard"
+import SignIn from "./components/auth/SignupForm";
+import LogIn from "./components/auth/LoginForm";
 import Home from "./components/Home"
 import { TitleProvider, LinkProvider, ItemProvider } from "./context/AddContext"
 
