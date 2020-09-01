@@ -1,5 +1,6 @@
 import React, {Fragment,useState,useContext} from "react"
 import {TitleContext,LinkContext,ItemContext} from "../context/AddContext";
+import Dashboard from "./DashBoard"
 
 
 export default function AddLink(){
@@ -22,6 +23,7 @@ export default function AddLink(){
        
         <Fragment>
             <div className="add">
+                <Dashboard/>
            <div className="title">
                <label htmlFor="Title">Title</label>
                <input 

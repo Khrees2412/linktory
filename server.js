@@ -29,8 +29,8 @@ require("./config/passport")(passport);
 
 //Routes
 app.use("/api/users", users)
-app.get("/", (req,res) => {res.send("Home")})
-//app.use(express.static(path.join(__dirname, 'client/public')));
+//app.get("/", (req,res) => {res.send("Home")})
+app.use(express.static(path.join(__dirname, 'client/public', 'index.html')));
 
 const port = process.env.PORT ||  5000;
 

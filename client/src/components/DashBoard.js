@@ -1,8 +1,14 @@
 import React, { Fragment } from "react"
 import {NavLink} from "react-router-dom"
 import "../styles/Dashboard.css"
- 
+import { logoutUser } from "../redux/actions/authActions";
+import {useDispatch } from "react-redux"
+
+
 export default function DashBoard(){
+
+    const dispatch = useDispatch()
+
     return(
         <Fragment>
             <div className="dash-container">
@@ -21,7 +27,7 @@ export default function DashBoard(){
             </div>
             */}
             <div className="dash-link">
-                <button className="logout-btn">LOG OUT</button>
+                <button className="logout-btn" onClick={() => dispatch(logoutUser)}>LOG OUT</button>
             </div>
             </div>
         </Fragment>

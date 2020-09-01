@@ -1,8 +1,10 @@
 import React, { Fragment,useContext } from "react"
 import "../styles/Dashboard.css"
 import { ItemContext } from "../context/AddContext"
+import Dashboard from "./DashBoard"
 
 export function ViewLinks(){
+
     const [items, setItems] = useContext(ItemContext)
     const removeItem = index => {
         const newItems = [...items];
@@ -11,7 +13,7 @@ export function ViewLinks(){
       };
     return (
         <Fragment>
-           
+           <Dashboard/>
                 {items.map((item,index) => (
                     <div className="item">
                 <h1 key={index}>{item.title}</h1>
@@ -37,10 +39,3 @@ export function Settings(){
     )
 }
 
-export function LogOut(){
-    return (
-        <Fragment>
-            <h1>Log Out Component</h1>
-        </Fragment>
-    )
-}

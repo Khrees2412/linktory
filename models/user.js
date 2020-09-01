@@ -13,11 +13,7 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    data_Created:{
-        link:[],
-        title:[]
-    },
-    date: {
+    date_created: {
       type: Date,
       default: Date.now
     }
