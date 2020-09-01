@@ -1,12 +1,20 @@
 import React,{Fragment} from "react";
 import Navbar from "./Navbar"
-import {Link} from "react-router-dom";
+import {Link,useHistory} from "react-router-dom";
 import "../styles/Home.css"
 import { Box } from "@chakra-ui/core";
-import { Button,ButtonGroup } from "@chakra-ui/core";
-
+//import { Button,ButtonGroup } from "@chakra-ui/core";
+import { useSelector } from "react-redux"
 export default function Home(){
    
+    const history = useHistory()
+    const auth = useSelector(state => state.auth);
+  
+
+    if(auth.isAuthenticated){
+        history.push("/dashboard")
+    }
+
     return(
         <Fragment>
         <Navbar/>

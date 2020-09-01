@@ -1,10 +1,28 @@
-import React,{useState, useEffect, Fragment} from "react";
+import React,
+{
+useState, 
+useEffect, 
+Fragment
+} from "react";
+import PropTypes from "prop-types";
+import classnames from "classnames"
+import {useDispatch,useSelector} from "react-redux"
 import Navbar from "../Navbar"
 import "../../styles/Onboard.css";
 //import { Box } from "@chakra-ui/core";
-import {Link} from "react-router-dom"
+import {Link,withRouter,useHistory} from "react-router-dom"
+import { registerUser } from "../../redux/actions/authActions"
 
-export default function SignIn(){
+function SignIn(){
+
+    const history = useHistory()
+    const auth = useSelector(state => state.auth);
+    const errorsState = useSelector(state => state.error)
+
+    if(auth.isAuthenticated){
+        history.push("/dashboard")
+    }
+    
 
     useEffect(() => {
         document.title = "Sign Up | LinkTory"
@@ -16,16 +34,30 @@ export default function SignIn(){
     const [password2, setPassword2] = useState("");
     const [errors, setErrors ] = useState({})
 
+    if(errorsState){
+        setErrors(errorsState)
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault()
     }
+
+    const newUser= {
+        name,
+        email,
+        password,
+        password2,
+        errors
+    }
+
+    const dispatch = useDispatch();
 
     return(
         <Fragment>
             <Navbar/>
            <div> 
             
-               <form onSubmit={handleSubmit} method="POST" action="/register">
+               <form onSubmit={handleSubmit} method="POST" action="/user/register">
                <div class="form-control">
                    <label htmlFor="Name">Name</label>
                    <input type="text" 
@@ -35,7 +67,11 @@ export default function SignIn(){
                           onChange={(e) => {
                               setName(e.target.value)
 
-                          }}/>
+                          }}
+                          className={classnames("", {
+                    invalid: errors.name
+                  })}
+                  />
               </div>
               <div class="form-control">
                    <label htmlFor="Email">Email</label>
@@ -46,7 +82,11 @@ export default function SignIn(){
                           onChange={(e) => {
                               setEmail(e.target.value)
 
-                          }} />
+                          }} 
+                          className={classnames("", {
+                    invalid: errors.email
+                  })}
+                  />
               </div>
               <div class="form-control">
                    <label htmlFor="Password">Password</label>
@@ -57,7 +97,11 @@ export default function SignIn(){
                           onChange={(e) => {
                               setPassword(e.target.value)
 
-                          }} />
+                          }} 
+                          className={classnames("", {
+                    invalid: errors.password
+                  })}
+                  />
               </div>
               <div class="form-control">
                    <label htmlFor="Confirm-Password">Confirm Your Password</label>
@@ -68,9 +112,13 @@ export default function SignIn(){
                           onChange={(e) => {
                               setPassword2(e.target.value)
 
-                          }}/>
+                          }}
+                          className={classnames("", {
+                    invalid: errors.password2
+                  })}
+                  />
               </div>
-              <button type="submit" className="submit-btn" ><strong>Sign In</strong></button>
+              <button type="submit" onClick={() => dispatch(registerUser(newUser, history.push("/dashboard")))} className="submit-btn" ><strong>Sign In</strong></button>
               <br/>
               <p>Already signed up ? <Link to="/login">Log in</Link></p>
               </form>
@@ -78,3 +126,11 @@ export default function SignIn(){
         </Fragment>
     )
 }
+
+
+SignIn.propTypes = {
+    auth: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired
+  };
+
+export default  withRouter(SignIn);
