@@ -13,6 +13,10 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    data_Created:{
+        link:[],
+        title:[]
+    },
     date: {
       type: Date,
       default: Date.now
