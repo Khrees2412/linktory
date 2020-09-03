@@ -6,6 +6,7 @@ const validateLoginInput = require("../validation/login");
 const User = require("../models/user")
 
 exports.loginNewUser =  (req,res) => {
+    
     //Form Validation
     const {errors, isValid } = validateLoginInput(req.body);
 
@@ -13,6 +14,7 @@ exports.loginNewUser =  (req,res) => {
     if(!isValid){
         return res.status(400).json(errors);
     }
+    
     const email = req.body.email;
     const password = req.body.password;
 

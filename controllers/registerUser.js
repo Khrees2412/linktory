@@ -6,11 +6,12 @@ const User = require("../models/user")
 
 exports.registerNewUser = (req,res) => {
     //Form Validation 
+    
     const {errors, isValid } = validateRegisterInput(req.body);
 
  //Check validation
     if(!isValid){
-        return res.status(400).json(errors)
+       return res.status(400).json(errors)
     }
     
     User.findOne({email:req.body.email }).then(user => {
@@ -30,9 +31,10 @@ exports.registerNewUser = (req,res) => {
                         newUser.password = hash;
                         newUser.save()
                         .then(user => res.json(user))
-                        .catch(err => console.log(err));
+                        .catch(err => res.status(400).json(err));
                     });
                 });
             }
         });
+        
     };

@@ -1,12 +1,10 @@
 const express = require("express");
 const router = express.Router();
 
-
-
-const User = require("../models/user")
-
+//Controllers
 const registerUser = require("../controllers/registerUser")
 const loginUser  = require("../controllers/loginUser")
+
 
 //@route POST api/users/register/
 //@desc Register user
@@ -19,4 +17,6 @@ router.post("/register", registerUser.registerNewUser)
 //@desc Login user and return JWT token
 //@access Public 
 router.post("/login", loginUser.loginNewUser)
+
+
 module.exports = router

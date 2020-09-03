@@ -57,7 +57,7 @@ function SignIn(){
             <Navbar/>
            <div> 
             
-               <form onSubmit={handleSubmit} method="POST" action="/user/register">
+               <form onSubmit={handleSubmit} method="POST" action="/api/user/register">
                <div class="form-control">
                    <label htmlFor="Name">Name</label>
                    <input type="text" 
@@ -118,7 +118,8 @@ function SignIn(){
                   })}
                   />
               </div>
-              <button type="submit" onClick={() => dispatch(registerUser(newUser, history.push("/dashboard")))} className="submit-btn" ><strong>Sign In</strong></button>
+              <button type="submit" onClick={() => dispatch(registerUser(newUser, history.push("/dashboard")))}
+               className="submit-btn" ><strong>Sign In</strong></button>
               <br/>
               <p>Already signed up ? <Link to="/login">Log in</Link></p>
               </form>

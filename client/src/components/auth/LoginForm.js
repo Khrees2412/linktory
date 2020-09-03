@@ -52,7 +52,7 @@ function LogIn(){
         <Fragment>
             <Navbar/>
            <div> 
-           <form onSubmit={handleSubmit} method="POST" action="/user/login">
+           <form onSubmit={handleSubmit} method="POST" action="/api/user/login">
               <div class="form-control">
                    <label htmlFor="Email">Email</label>
                    <input type="email" 
