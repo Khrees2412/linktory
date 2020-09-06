@@ -5,20 +5,27 @@ exports.updateOne = async (req,res) => {
         let link = await Link.findById(req.params.id)
     
         if (!link) {
-          return res.render({message:"no link found"})
+          return res.json({message:"no link found"})
         }
-    
+        link = await Link.findOneAndUpdate({ _id: req.params.id }, req.body, {
+          new: true,
+          runValidators: true,
+        },
+          res.json({
+          message:"changed"
+        })
+        )
+      }
+        /*
         if (link.user != req.user.id) {
           res.redirect('/user')
         } else {
-          link = await Link.findOneAndUpdate({ _id: req.params.id }, req.body, {
-            new: true,
-            runValidators: true,
-          })
+          )
     
           res.redirect('/dashboard')
         }
-      } catch (err) {
+        */
+      catch (err) {
         console.error(err)
         return res.status(400).json(err)
       }

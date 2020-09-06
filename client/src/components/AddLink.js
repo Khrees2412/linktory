@@ -1,11 +1,16 @@
 import React, {Fragment,useState,useContext} from "react"
-import {TitleContext,LinkContext,ItemContext} from "../context/AddContext";
+import {ItemContext} from "../context/AddContext";
 import Dashboard from "./DashBoard"
+import {useSelector, useDispatch} from "react-redux";
 
 
 export default function AddLink(){
-    const [title, setTitle] = useContext(TitleContext);
-    const [link, setLink] = useContext(LinkContext);
+
+    const [title, setTitle] = useState("");
+    const [link, setLink] = useState("");
+
+    const links = useSelector(state => state.links)
+
     const [items, setItems] = useContext(ItemContext)
 
     const onChangeTitle = (e) =>{
@@ -22,8 +27,8 @@ export default function AddLink(){
     return(
        
         <Fragment>
+             <Dashboard/>
             <div className="add">
-                <Dashboard/>
            <div className="title">
                <label htmlFor="Title">Title</label>
                <input 
@@ -32,7 +37,7 @@ export default function AddLink(){
                       placeholder="Must not be more than 50 characters long "
                       value={title}
                       onChange={onChangeTitle}
-                      
+                      id="Title"
                       />
             </div> 
             
@@ -43,7 +48,7 @@ export default function AddLink(){
                placeholder="Must begin with 'https' or 'http' "
                value={link}
                onChange={onChangeLink}
-
+                id="Link"
                />
                
                {/*<a href={link} target="_blank" rel="noopener noreferrer" >{link}</a>*/}

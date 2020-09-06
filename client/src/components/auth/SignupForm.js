@@ -17,15 +17,15 @@ function SignIn(){
 
     const history = useHistory()
     const auth = useSelector(state => state.auth);
-    const errorsState = useSelector(state => state.error)
+    const errorsState = useSelector(state => state.errors)
 
     if(auth.isAuthenticated){
         history.push("/dashboard")
     }
-    
 
     useEffect(() => {
-        document.title = "Sign Up | LinkTory"
+        document.title = "Sign Up | LinkTory";
+
     })
 
     const [name, setName] = useState("");
@@ -34,7 +34,7 @@ function SignIn(){
     const [password2, setPassword2] = useState("");
     const [errors, setErrors ] = useState({})
 
-    if(errorsState){
+    if(!errorsState){
         setErrors(errorsState)
     }
 
@@ -58,7 +58,7 @@ function SignIn(){
            <div> 
             
                <form onSubmit={handleSubmit} method="POST" action="/api/user/register">
-               <div class="form-control">
+               <div className="form-control">
                    <label htmlFor="Name">Name</label>
                    <input type="text" 
                           name="name"
@@ -73,7 +73,7 @@ function SignIn(){
                   })}
                   />
               </div>
-              <div class="form-control">
+              <div className="form-control">
                    <label htmlFor="Email">Email</label>
                    <input type="email" 
                           name="email"
@@ -88,7 +88,7 @@ function SignIn(){
                   })}
                   />
               </div>
-              <div class="form-control">
+              <div className="form-control">
                    <label htmlFor="Password">Password</label>
                    <input type="password" 
                           name="password"
@@ -118,7 +118,7 @@ function SignIn(){
                   })}
                   />
               </div>
-              <button type="submit" onClick={() => dispatch(registerUser(newUser, history.push("/dashboard")))}
+              <button type="submit" onClick={() => dispatch(registerUser(newUser, history))}
                className="submit-btn" ><strong>Sign In</strong></button>
               <br/>
               <p>Already signed up ? <Link to="/login">Log in</Link></p>

@@ -14,11 +14,6 @@ export default function Home(){
    
     const history = useHistory()
     const auth = useSelector(state => state.auth);
-  
-
-    if(auth.isAuthenticated){
-        history.push("/dashboard")
-    }
     // Check for token to keep user logged in
 if (localStorage.jwtToken) {
   // Set auth token header auth
@@ -26,6 +21,7 @@ if (localStorage.jwtToken) {
   setAuthToken(token);
   // Decode token and get user info and exp
   const decoded = jwt_decode(token);
+  console.log(decoded.exp)
   // Set user and isAuthenticated
   store.dispatch(setCurrentUser(decoded));
 // Check for expired token
@@ -34,8 +30,13 @@ if (localStorage.jwtToken) {
     // Logout user
     store.dispatch(logoutUser());
     // Redirect to login
-    window.location.href = "./login";
+    window.location.href = "/login";
   }
+}
+
+
+if(auth.isAuthenticated){
+  history.push("/dashboard")
 }
 
     return(
@@ -53,7 +54,9 @@ if (localStorage.jwtToken) {
             </div>
            
             
-            <p className="onboard-link"><Link to="/login">LOG IN HERE </Link> OR <Link to="/signin"> SIGN UP HERE</Link></p>
+            <p className="onboard-link"><Link to="/login">Login </Link> 
+            <br/>
+             <Link to="/signin"> Create an account</Link></p>
             </div>
             <span><Link to="/dashboard">Dashboard</Link></span>
         </Fragment>

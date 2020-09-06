@@ -14,6 +14,7 @@ export function ViewLinks(){
     return (
         <Fragment>
            <Dashboard/>
+           <div className="view">
                 {items.map((item,index) => (
                     <div className="item">
                 <h1 key={index}>{item.title}</h1>
@@ -22,9 +23,9 @@ export function ViewLinks(){
                 rel="noopener noreferrer" >
                 {item.link}</a>
                 <br/>
-                <button onClick={() => removeItem(index) }>  X </button>
+                <button className="delete-btn" onClick={() => removeItem(index) }>  X </button>
                 </div>))}
-           
+                </div>
         </Fragment>
     )
 }

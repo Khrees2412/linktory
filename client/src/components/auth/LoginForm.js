@@ -17,26 +17,26 @@ function LogIn(){
 
     const history = useHistory()
     const auth = useSelector(state => state.auth);
-    const errorsState = useSelector(state => state.error)
-
+    const errorsState = useSelector(state => state.errors)
+    
     if(auth.isAuthenticated){
         history.push("/dashboard")
-    }
+    };
     
-     useEffect(() => {
+    useEffect(() => {
         document.title = "Login | LinkTory";
-        if(auth.isAuthenticated){
-            history.push("/dashboard")
-        };
     })
+
+  
+    
 //debugger
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors ] = useState({});
 
-    if(errorsState){
-        setErrors(errorsState)
-    }
+   // if(errorsState){
+     //   setErrors(errorsState)
+    //}
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -45,15 +45,15 @@ function LogIn(){
     const dispatch = useDispatch();
 
     const userData = {
-        email:email,
-        password:password
+        email,
+        password
     }
     return(
         <Fragment>
             <Navbar/>
            <div> 
            <form onSubmit={handleSubmit} method="POST" action="/api/user/login">
-              <div class="form-control">
+              <div className="form-control">
                    <label htmlFor="Email">Email</label>
                    <input type="email" 
                           name="email"
@@ -69,7 +69,7 @@ function LogIn(){
                   />
  
               </div>
-              <div class="form-control">
+              <div className="form-control">
                    <label htmlFor="Password">Password</label>
                    <span className="red-text">
                   {errors.password}

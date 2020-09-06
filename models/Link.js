@@ -6,9 +6,10 @@ const LinkSchema = new mongoose.Schema({
         required: true,
         trim: true,
       },
-      body: {
+      url: {
         type: String,
         required: true,
+        trim: true,
       },
       status: {
         type: String,
@@ -17,7 +18,7 @@ const LinkSchema = new mongoose.Schema({
       },
       user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'user',
       },
       createdAt: {
         type: Date,

@@ -29,7 +29,7 @@ require("./config/passport")(passport);
 
 //Routes
 app.use("/api/users", users)
-app.use("/user", link)
+app.use("/api/user", link)
 app.get("/", (req,res) =>{
     res.send("home")
 })
