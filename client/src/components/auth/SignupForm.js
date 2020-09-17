@@ -25,7 +25,9 @@ function SignIn(){
 
     useEffect(() => {
         document.title = "Sign Up | LinkTory";
-
+        if(!errorsState){
+            setErrors(errorsState)
+        }
     })
 
     const [name, setName] = useState("");
@@ -34,9 +36,7 @@ function SignIn(){
     const [password2, setPassword2] = useState("");
     const [errors, setErrors ] = useState({})
 
-    if(!errorsState){
-        setErrors(errorsState)
-    }
+    
 
     const handleSubmit = (e) => {
         e.preventDefault()

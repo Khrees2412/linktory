@@ -7,13 +7,13 @@ import {ViewLinks,Settings} from "./components/DashComponents"
 import SignIn from "./components/auth/SignupForm";
 import LogIn from "./components/auth/LoginForm";
 import Home from "./components/Home"
-import { TitleProvider, LinkProvider, ItemProvider } from "./context/AddContext";
+import { TitleProvider, UrlProvider, ItemProvider } from "./context/AddContext";
 import PrivateRoute from "./components/privateRoute"
 
 function App() {
   return (
     <ItemProvider>
-    <LinkProvider>
+    <UrlProvider>
     <TitleProvider>
     <Router>
     
@@ -31,7 +31,7 @@ function App() {
     </Switch>
     </Router>
     </TitleProvider>
-    </LinkProvider>
+    </UrlProvider>
     </ItemProvider>
   );
 }

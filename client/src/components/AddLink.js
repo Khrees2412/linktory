@@ -7,7 +7,7 @@ import {useSelector, useDispatch} from "react-redux";
 export default function AddLink(){
 
     const [title, setTitle] = useState("");
-    const [link, setLink] = useState("");
+    const [url, setUrl] = useState("");
 
     const links = useSelector(state => state.links)
 
@@ -16,11 +16,11 @@ export default function AddLink(){
     const onChangeTitle = (e) =>{
          setTitle(e.target.value)
     }
-    const onChangeLink = (e) =>{
-        setLink(e.target.value)
+    const onChangeUrl = (e) =>{
+        setUrl(e.target.value)
     }
-    const addLink = (title,link) => {
-        const newItems = [...items,{title,link}];
+    const addLink = (title,url) => {
+        const newItems = [...items,{title,url}];
         setItems(newItems)
         }
     const [modal, setModal] = useState(false)
@@ -42,13 +42,13 @@ export default function AddLink(){
             </div> 
             
             <div className="link">
-            <label htmlFor="Link">Link</label>
+            <label htmlFor="Url">Url</label>
                <input 
                type="text"  
                placeholder="Must begin with 'https' or 'http' "
-               value={link}
-               onChange={onChangeLink}
-                id="Link"
+               value={url}
+               onChange={onChangeUrl}
+                id="Url"
                />
                
                {/*<a href={link} target="_blank" rel="noopener noreferrer" >{link}</a>*/}
@@ -58,13 +58,13 @@ export default function AddLink(){
             type="submit" 
             onClick={() => {
                 setModal(!modal);
-                        if(!link || !title) {
+                        if(!url || !title) {
                 alert(" Please fill both input fields!! ");
                         return;
                 }
                
-                addLink(title,link)
-                setLink("");
+                addLink(title,url)
+                setUrl("");
                 setTitle("");;
             }}>ADD</button>
             </div>

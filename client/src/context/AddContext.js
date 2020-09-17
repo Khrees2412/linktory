@@ -1,7 +1,7 @@
 import React, {createContext, useState} from "react"
 
 export const TitleContext = createContext()
-export const LinkContext = createContext()
+export const UrlContext = createContext()
 export const ItemContext = createContext()
 
 
@@ -16,13 +16,13 @@ export const TitleProvider = ({children}) => {
    )
 
  }
- export const LinkProvider = ({children}) => {
-  const [link, setLink] = useState("");
+ export const UrlProvider = ({children}) => {
+  const [url, setUrl] = useState("");
  
 return(
-  <LinkContext.Provider value={[link, setLink]}>
+  <UrlContext.Provider value={[url, setUrl]}>
       {children}
-  </LinkContext.Provider>
+  </UrlContext.Provider>
  )
 
 }

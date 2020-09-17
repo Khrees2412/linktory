@@ -19,9 +19,9 @@ export function ViewLinks(){
                     <div className="item">
                 <h1 key={index}>{item.title}</h1>
                 <br/>
-                <a key={index} href={item.link} target="_blank"
+                <a key={index} href={item.url} target="_blank"
                 rel="noopener noreferrer" >
-                {item.link}</a>
+                {item.url}</a>
                 <br/>
                 <button className="delete-btn" onClick={() => removeItem(index) }>  X </button>
                 </div>))}
