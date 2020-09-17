@@ -2,8 +2,9 @@ const Link = require("../models/Link")
 
 exports.createNew = async (req,res) => {
     try {
-       // req.body.user = req.user.id
-        await Link.create(req.body)
+        const url = req.body.url;
+        const title = req.body.title;
+        await Link.create({url,title})
         res
         .status(200)
         .json({

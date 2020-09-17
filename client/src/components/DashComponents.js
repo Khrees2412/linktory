@@ -1,16 +1,19 @@
-import React, { Fragment,useContext } from "react"
+import React, { Fragment} from "react"
 import "../styles/Dashboard.css"
-import { ItemContext } from "../context/AddContext"
+//import { ItemContext } from "../context/AddContext", ?useContext 
 import Dashboard from "./DashBoard"
+import {useSelector, useDispatch} from "react-redux";
+import {fetchAll} from "./../redux/actions/linkActions"
 
 export function ViewLinks(){
 
-    const [items, setItems] = useContext(ItemContext)
-    const removeItem = index => {
-        const newItems = [...items];
-        newItems.splice(index, 1);
-        setItems(newItems);
-      };
+    //const [items, setItems] = useContext(ItemContext)
+   // const removeItem = index => {
+   //     const newItems = [...items];
+     //   newItems.splice(index, 1);
+       // setItems(newItems);};
+       const items = useSelector(state => state.links)
+       const dispatch = useDispatch()
     return (
         <Fragment>
            <Dashboard/>
@@ -23,7 +26,7 @@ export function ViewLinks(){
                 rel="noopener noreferrer" >
                 {item.url}</a>
                 <br/>
-                <button className="delete-btn" onClick={() => removeItem(index) }>  X </button>
+                <button className="delete-btn" onClick={dispatch(index) }>  X </button>
                 </div>))}
                 </div>
         </Fragment>

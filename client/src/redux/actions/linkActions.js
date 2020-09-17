@@ -24,7 +24,7 @@ export const fetchAll = () => dispatch => {
     axios.get("/api/user/view_links")
     .then(res => dispatch({
         type:GET_ALL_LINKS,
-        payload: res.data
+        payload: res.data.data
     }))
     .catch(err => dispatch({
         type:GET_ERRORS,

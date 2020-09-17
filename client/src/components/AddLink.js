@@ -1,7 +1,8 @@
 import React, {Fragment,useState,useContext} from "react"
-import {ItemContext} from "../context/AddContext";
+//import {ItemContext} from "../context/AddContext";
 import Dashboard from "./DashBoard"
 import {useSelector, useDispatch} from "react-redux";
+import {createNew} from "./../redux/actions/linkActions"
 
 
 export default function AddLink(){
@@ -10,8 +11,9 @@ export default function AddLink(){
     const [url, setUrl] = useState("");
 
     const links = useSelector(state => state.links)
-
-    const [items, setItems] = useContext(ItemContext)
+    const dispatch = useDispatch()
+    const [items, setItems ] = useState(links)
+    //const [items, setItems] = useContext(ItemContext)
 
     const onChangeTitle = (e) =>{
          setTitle(e.target.value)
@@ -19,10 +21,10 @@ export default function AddLink(){
     const onChangeUrl = (e) =>{
         setUrl(e.target.value)
     }
-    const addLink = (title,url) => {
-        const newItems = [...items,{title,url}];
-        setItems(newItems)
-        }
+
+   // const addLink = (title,url) => {
+     //   const newItems = [...items,{title,url}];
+       // setItems(newItems)}
     const [modal, setModal] = useState(false)
     return(
        
@@ -62,8 +64,12 @@ export default function AddLink(){
                 alert(" Please fill both input fields!! ");
                         return;
                 }
-               
-                addLink(title,url)
+                const data = {
+                    url,
+                    title
+                }
+               dispatch(createNew(data))
+               {/* addLink(title,url) */}
                 setUrl("");
                 setTitle("");;
             }}>ADD</button>
