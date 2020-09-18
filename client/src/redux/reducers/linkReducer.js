@@ -10,7 +10,7 @@ const initialState = [];
 export default function (state = initialState, action){
     switch(action.type){
         case GET_ALL_LINKS:
-            return [...state];
+            return action.payload;
         case DELETE_LINK:
             return [...state].filter(id => id !== action.payload)
         case ADD_NEW_LINK:

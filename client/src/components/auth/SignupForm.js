@@ -28,7 +28,7 @@ function SignIn(){
         if(!errorsState){
             setErrors(errorsState)
         }
-    })
+    },[])
 
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");

@@ -25,7 +25,7 @@ function LogIn(){
     
     useEffect(() => {
         document.title = "Login | LinkTory";
-    })
+    },[])
 
   
     

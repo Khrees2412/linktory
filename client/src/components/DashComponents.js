@@ -1,4 +1,4 @@
-import React, { Fragment} from "react"
+import React, { Fragment, useEffect} from "react"
 import "../styles/Dashboard.css"
 //import { ItemContext } from "../context/AddContext", ?useContext 
 import Dashboard from "./DashBoard"
@@ -14,6 +14,9 @@ export function ViewLinks(){
        // setItems(newItems);};
        const items = useSelector(state => state.links)
        const dispatch = useDispatch()
+       useEffect(() => {
+        dispatch(fetchAll())
+       },[])
     return (
         <Fragment>
            <Dashboard/>

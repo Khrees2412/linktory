@@ -22,13 +22,11 @@ export const createNew = data => dispatch => {
 }
 export const fetchAll = () => dispatch => {
     axios.get("/api/user/view_links")
-    .then(res => dispatch({
-        type:GET_ALL_LINKS,
-        payload: res.data.data
-    }))
+   // .then(res => console.log(res.data.data))
+    .then(res => {dispatch(GET_ALL_LINKS(res.data.data))})
     .catch(err => dispatch({
         type:GET_ERRORS,
-        payload:err.response.data
+        payload:err.data
     }))
 }
 
