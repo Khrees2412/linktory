@@ -37,17 +37,25 @@ function LogIn(){
    // if(errorsState){
      //   setErrors(errorsState)
     //}
-
-    const handleSubmit = (e) => {
-        e.preventDefault()
-    }
-
-    const dispatch = useDispatch();
+ const dispatch = useDispatch();
 
     const userData = {
         email,
         password
     }
+    const handleSubmit = (e) => {
+        e.preventDefault()
+    }
+    const check = () => {
+        const { email, password }  = userData
+    if(email && password  ){
+        dispatch(loginUser(userData))
+    }
+    else{
+        alert("ENTER YOUR DETAILS TO CONTINUE")
+    }
+
+}
     return(
         <Fragment>
             <Navbar/>
@@ -89,7 +97,7 @@ function LogIn(){
                   />
  
               </div>
-              <button type="submit" onClick={() => dispatch(loginUser(userData))} className="submit-btn"><strong>Log In</strong></button>
+              <button type="submit" onClick={() => check()} className="submit-btn"><strong>Log In</strong></button>
               <br/>
               <p>Don't yet have an account ? <Link to="/signin">Sign up here</Link></p>
               </form>

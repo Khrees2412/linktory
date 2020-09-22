@@ -5,14 +5,25 @@ import{
     //, UPDATE_LINK 
 } from "../actions/types"
 
-const initialState = [];
+const initialState = {
+    items:[],
+    loading:true
+};
 
 export default function (state = initialState, action){
     switch(action.type){
         case GET_ALL_LINKS:
-            return action.payload;
+           // console.log(action.payload,"hi")
+            return {
+                ...state,
+                loading:false,
+                items: action.payload
+            };
         case DELETE_LINK:
-            return [...state].filter(id => id !== action.payload)
+            return  {
+                ...state,
+            items: state.items.filter(item => item._id !== action.payload)
+        }
         case ADD_NEW_LINK:
             return [...state, action.payload]
         default:

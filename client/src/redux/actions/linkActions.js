@@ -16,17 +16,20 @@ export const createNew = data => dispatch => {
     }))
     .catch(err => dispatch({
         type: GET_ERRORS,
-        payload: err.response.data
+        payload: err //err.response.data.error
       })
     )
 }
 export const fetchAll = () => dispatch => {
     axios.get("/api/user/view_links")
    // .then(res => console.log(res.data.data))
-    .then(res => {dispatch(GET_ALL_LINKS(res.data.data))})
+    .then(res => dispatch({
+        type:GET_ALL_LINKS,
+        payload:res.data.data
+    }))
     .catch(err => dispatch({
         type:GET_ERRORS,
-        payload:err.data
+        payload:err //err.response.data.error
     }))
 }
 
@@ -38,7 +41,7 @@ export const deleteLink = id => dispatch => {
     }))
     .catch(err =>  dispatch({
         type: GET_ERRORS,
-        payload: err.response.data
+        payload: err //err.response.data.error
       }))
 }
 
@@ -50,6 +53,6 @@ export const updateLink = id => dispatch => {
     }))
     .catch(err =>  dispatch({
         type: GET_ERRORS,
-        payload: err.response.data
+        payload: err //err.response.data.error
       }))
 }
