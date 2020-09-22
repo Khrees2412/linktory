@@ -17,6 +17,7 @@ export function ViewLinks(){
        const items = useSelector(state => state.links.items)
        const dispatch = useDispatch()
        useEffect(() => {
+           document.title = "Your Dashboard"
         dispatch(fetchAll())
         //axios.get('/api/user/view_links')
        // .then( res => setData(res.data.data))

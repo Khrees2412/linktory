@@ -30,10 +30,16 @@ require("./config/passport")(passport);
 //Routes
 app.use("/api/users", users)
 app.use("/api/user", link)
+/*
 app.get("/", (req,res) =>{
     res.send("home")
 })
-//app.use(express.static(path.join(__dirname, 'client/public', 'index.html')));
+*/
+app.use(express.static(path.join(__dirname, 'client/build')));
+app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+  });
+
 
 const port = process.env.PORT ||  5000;
 
