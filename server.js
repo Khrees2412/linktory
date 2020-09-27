@@ -1,15 +1,15 @@
-const express = require("express");
-const path = require("path");
-const passport = require("passport")
-const connectDB = require("./config/db")
+const express = require('express')
+const path = require('path')
+const passport = require('passport')
+const connectDB = require('./config/db')
 
-const users = require("./routes");
-const link = require("./routes/link")
+const users = require('./routes')
+const link = require('./routes/link')
 
-const app = express();
+const app = express()
 
-app.use(express.urlencoded({extended:false}));
-app.use(express.json());
+app.use(express.urlencoded({ extended: false }))
+app.use(express.json())
 
 //Initialize DataBase
 connectDB()
@@ -22,25 +22,26 @@ mongoose.connect(db,{useNewUrlParser:true, useUnifiedTopology: true })
 */
 
 //Passport middleware
-app.use(passport.initialize());
+app.use(passport.initialize())
 
 // Passport config
-require("./config/passport")(passport);
+require('./config/passport')(passport)
 
 //Routes
-app.use("/api/users", users)
-app.use("/api/user", link)
+app.use('/api/users', users)
+app.use('/api/user', link)
 /*
 app.get("/", (req,res) =>{
     res.send("home")
 })
 */
-app.use(express.static(path.join(__dirname, 'client/build')));
-app.get('/*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-  });
+app.use(express.static(path.join(__dirname, 'client/build')))
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client/build', 'index.html'))
+})
 
+const port = process.env.PORT || 5000
 
-const port = process.env.PORT ||  5000;
-
-app.listen(port, () => console.log(`Server up and running on port ${port} ! on ${Date()}`))
+app.listen(port, () =>
+    console.log(`Server up and running on port ${port} ! on ${Date()}`)
+)

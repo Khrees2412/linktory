@@ -1,40 +1,41 @@
 {
-  "name": "linkboard",
-  "version": "1.0.0",
-  "description": "platform of users curated links",
-  "main": "server.js",
-  "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "concurrently": "^5.3.0",
-    "connect-mongo": "^3.2.0",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "express-session": "^1.17.1",
-    "is-empty": "^1.2.0",
-    "jsonwebtoken": "^8.5.1",
-    "moment": "^2.27.0",
-    "mongoose": "^5.9.28",
-    "morgan": "^1.10.0",
-    "passport": "^0.4.1",
-    "passport-jwt": "^4.0.0",
-    "validator": "^13.1.1"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.4",
-    "cross-env": "^7.0.2"
-  },
-  "scripts": {
-    "client-install": "cd client && npm install",
-    "start": "node server.js",
-    "server": "nodemon server.js",
-    "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
-  },
-  "keywords": [
-    "links",
-    "web",
-    "curate"
-  ],
-  "author": "Christian Ndu",
-  "license": "MIT"
+    "name": "linkboard",
+    "version": "1.0.0",
+    "description": "platform of users curated links",
+    "main": "server.js",
+    "dependencies": {
+        "bcryptjs": "^2.4.3",
+        "connect-mongo": "^3.2.0",
+        "dotenv": "^8.2.0",
+        "express": "^4.17.1",
+        "express-session": "^1.17.1",
+        "is-empty": "^1.2.0",
+        "jsonwebtoken": "^8.5.1",
+        "moment": "^2.27.0",
+        "mongoose": "^5.9.28",
+        "morgan": "^1.10.0",
+        "passport": "^0.4.1",
+        "passport-jwt": "^4.0.0",
+        "validator": "^13.1.1"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.4",
+        "concurrently": "^5.3.0",
+        "cross-env": "^7.0.2"
+    },
+    "scripts": {
+        "client-install": "cd client && npm install",
+        "start": "node server.js",
+        "server": "nodemon server.js",
+        "client": "npm start --prefix client",
+        "dev": "concurrently \"npm run server\" \"npm run client\"",
+        "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix"
+    },
+    "keywords": [
+        "links",
+        "web",
+        "curate"
+    ],
+    "author": "Christian Ndu",
+    "license": "MIT"
 }

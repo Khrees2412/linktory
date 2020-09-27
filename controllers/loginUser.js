@@ -1,53 +1,55 @@
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const keys = require("../config/keys");
+const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
+const keys = require('../config/keys')
 
-const validateLoginInput = require("../validation/login");
-const User = require("../models/user")
+const validateLoginInput = require('../validation/login')
+const User = require('../models/user')
 
-exports.loginNewUser =  (req,res) => {
-    
+exports.loginNewUser = (req, res) => {
     //Form Validation
-    const {errors, isValid } = validateLoginInput(req.body);
+    const { errors, isValid } = validateLoginInput(req.body)
 
     //Check validation
-    if(!isValid){
-        return res.status(400).json(errors);
+    if (!isValid) {
+        return res.status(400).json(errors)
     }
-    
-    const email = req.body.email;
-    const password = req.body.password;
+
+    const email = req.body.email
+    const password = req.body.password
 
     //Find User by email
-    User.findOne({email}).then(user => {
-        if(!user){
+    User.findOne({ email }).then((user) => {
+        if (!user) {
             return res.status(400).json({
-                emailnotfound:"Email Not Found" })
+                emailnotfound: 'Email Not Found',
+            })
         }
         //Check password
-        bcrypt.compare(password,user.password).then(isMatch => {
-            if(isMatch){
+        bcrypt.compare(password, user.password).then((isMatch) => {
+            if (isMatch) {
                 //User matched
                 //create JWT payload
                 const payload = {
-                    id:user.id,
-                    name:user.name
-                };
-                //Sign token 
+                    id: user.id,
+                    name: user.name,
+                }
+                //Sign token
                 jwt.sign(
-                    payload,keys.secretOrKey,{
-                        expiresIn:315569266
+                    payload,
+                    keys.secretOrKey,
+                    {
+                        expiresIn: 315569266,
                     },
-                    (err,token) => {
+                    (err, token) => {
                         res.json({
-                            success:true,
-                            token:"Bearer" + token
-                        });
+                            success: true,
+                            token: 'Bearer' + token,
+                        })
                     }
-                );
-            }else{
+                )
+            } else {
                 return res.status(400).json({
-                    passwordincorrect: "Password Incorrect"
+                    passwordincorrect: 'Password Incorrect',
                 })
             }
         })
