@@ -1,10 +1,11 @@
 {
-    "name": "linkboard",
+    "name": "linktory",
     "version": "1.0.0",
     "description": "platform of users curated links",
     "main": "server.js",
     "dependencies": {
         "bcryptjs": "^2.4.3",
+        "config": "^3.3.2",
         "connect-mongo": "^3.2.0",
         "dotenv": "^8.2.0",
         "express": "^4.17.1",
