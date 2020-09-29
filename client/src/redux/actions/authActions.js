@@ -27,12 +27,14 @@ export const loginUser = (userData) => (dispatch) => {
             setAuthToken(token)
             // Decode token to get user data
             const decoded = jwt_decode(token)
+            /*
             const userDetails = {
                 id: decoded.id,
                 name: decoded.name,
             }
             localStorage.setItem('id', userDetails.id)
             localStorage.setItem('name', userDetails.name)
+            */
             // Set current user
             dispatch(setCurrentUser(decoded))
         })

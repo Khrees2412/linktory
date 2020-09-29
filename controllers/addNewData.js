@@ -15,12 +15,12 @@ exports.createNew = async (req, res) => {
         */
 
         const user = await User.findById(req.user.id).select('-password')
-
+        const { url, title } = req.body
         const newLink = new Link({
-            name: user.name,
+            name: req.user.name,
             url,
             title,
-            //user: req.user.id,
+            user: req.user.id,
         })
 
         const link = await newLink.save()

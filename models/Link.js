@@ -4,12 +4,12 @@ const LinkSchema = new mongoose.Schema({
     name: {
         type: String,
     },
-    title: {
+    url: {
         type: String,
         required: true,
         trim: true,
     },
-    url: {
+    title: {
         type: String,
         required: true,
         trim: true,
