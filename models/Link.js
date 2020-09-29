@@ -1,31 +1,33 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose')
 
 const LinkSchema = new mongoose.Schema({
-      title: {
+    name: {
+        type: String,
+    },
+    title: {
         type: String,
         required: true,
         trim: true,
-      },
-      url: {
+    },
+    url: {
         type: String,
         required: true,
         trim: true,
-      },
-      status: {
+    },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+    },
+    status: {
         type: String,
         default: 'public',
         enum: ['public', 'private'],
-      },
-      user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'user',
-      },
-      createdAt: {
+    },
+    createdAt: {
         type: Date,
-        default: Date.now
-      }
+        default: Date.now,
+    },
 })
 
-const Link = mongoose.model('Link', LinkSchema);
+const Link = mongoose.model('Link', LinkSchema)
 
-module.exports = Link;
+module.exports = Link

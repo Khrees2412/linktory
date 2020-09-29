@@ -30,8 +30,10 @@ exports.loginNewUser = (req, res) => {
                 //User matched
                 //create JWT payload
                 const payload = {
-                    id: user.id,
-                    name: user.name,
+                    user: {
+                        id: user.id,
+                        name: user.name,
+                    },
                 }
                 //Sign token
                 jwt.sign(
@@ -41,10 +43,16 @@ exports.loginNewUser = (req, res) => {
                         expiresIn: 315569266,
                     },
                     (err, token) => {
+                        if (err) throw err
                         res.json({
                             success: true,
-                            token: 'Bearer' + token,
+                            user: {
+                                name: user.name,
+                                id: user.id,
+                            },
+                            token,
                         })
+                        //console.log('payload:', token.payload.id)
                     }
                 )
             } else {
