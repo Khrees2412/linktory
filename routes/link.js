@@ -3,14 +3,15 @@ const router = express.Router()
 const auth = require('../middleware/auth')
 
 //Controllers
-const getAllData = require('../controllers/getAllData')
-const addNewData = require('../controllers/addNewData')
-const deleteData = require('../controllers/deleteData')
-const updateData = require('../controllers/updateData')
+const fetchLinks = require('../controllers/link').fetchAll
+const addLink = require('../controllers/link').createNew
+const deleteLink = require('../controllers/link').deleteOne
+const updateLink = require('../controllers/link').updateOne
 
-router.get('/view_links', auth, getAllData.fetchAll)
-router.post('/add_link', auth, addNewData.createNew)
-router.delete('/delete_link/:id', auth, deleteData.deleteOne)
-router.put('/edit_link/:id', auth, updateData.updateOne)
+//Routes
+router.get('/view_links', auth, fetchLinks)
+router.post('/add_link', auth, addLink)
+router.delete('/delete_link/:id', auth, deleteLink)
+router.put('/edit_link/:id', auth, updateLink)
 
 module.exports = router

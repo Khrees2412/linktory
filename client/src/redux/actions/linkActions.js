@@ -1,4 +1,4 @@
-import axios from 'axios'
+import api from '../../utils/api'
 import {
     GET_ERRORS,
     GET_ALL_LINKS,
@@ -8,8 +8,7 @@ import {
 } from './types'
 
 export const createNew = (data) => (dispatch) => {
-    axios
-        .post('/api/user/add_link', data)
+    api.post('/add_link', data)
         .then((res) =>
             dispatch({
                 type: ADD_NEW_LINK,
@@ -24,8 +23,7 @@ export const createNew = (data) => (dispatch) => {
         )
 }
 export const fetchAll = () => (dispatch) => {
-    axios
-        .get('/api/user/view_links')
+    api.get('/view_links')
         // .then(res => console.log(res.data.data))
         .then((res) =>
             dispatch({
@@ -42,8 +40,7 @@ export const fetchAll = () => (dispatch) => {
 }
 
 export const deleteLink = (id) => (dispatch) => {
-    axios
-        .delete(`/api/user/delete_link/${id}`)
+    api.delete(`/delete_link/${id}`)
         .then((res) =>
             dispatch({
                 type: DELETE_LINK,
@@ -59,8 +56,7 @@ export const deleteLink = (id) => (dispatch) => {
 }
 
 export const updateLink = (id) => (dispatch) => {
-    axios
-        .put(`/api/user/delete_link/${id}`)
+    api.put(`/delete_link/${id}`)
         .then((res) =>
             dispatch({
                 type: UPDATE_LINK,

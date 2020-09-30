@@ -18,11 +18,12 @@ const Home = React.memo(() => {
             setAuthToken(token)
             // Decode token and get user info and exp
             const decoded = jwt_decode(token)
-            console.log(decoded.exp)
+            // console.log(decoded.exp)
             // Set user and isAuthenticated
             store.dispatch(setCurrentUser(decoded))
             // Check for expired token
             const currentTime = Date.now() / 1000 // to get in milliseconds
+
             if (decoded.exp < currentTime) {
                 // Logout user
                 store.dispatch(logoutUser())
@@ -38,7 +39,6 @@ const Home = React.memo(() => {
     if (auth.isAuthenticated) {
         history.push('/dashboard')
     }
-
     return (
         <Fragment>
             <Navbar />
