@@ -1,70 +1,72 @@
-import React, { Fragment, useEffect } from 'react'
-import Navbar from './Navbar'
-import { Link, useHistory } from 'react-router-dom'
-import '../styles/Home.css'
-import { Box } from '@chakra-ui/core'
-//import { Button,ButtonGroup } from "@chakra-ui/core";
-import { useSelector } from 'react-redux'
-import jwt_decode from 'jwt-decode'
-import setAuthToken from '../utils/setAuthToken'
-import { setCurrentUser, logoutUser } from '../redux/actions/authActions'
-import store from '../redux/store'
+import React, { Fragment, useEffect } from "react";
+import Navbar from "./Navbar";
+import { Link, useHistory } from "react-router-dom";
+import "../styles/Home.css";
+import { Box } from "@chakra-ui/react";
+import { useSelector } from "react-redux";
+import jwt_decode from "jwt-decode";
+import setAuthToken from "../utils/setAuthToken";
+import { setCurrentUser, logoutUser } from "../redux/actions/authActions";
+import store from "../redux/store";
 
 const Home = React.memo(() => {
-    useEffect(() => {
-        if (localStorage.jwtToken) {
-            // Set auth token header auth
-            const token = localStorage.jwtToken
-            setAuthToken(token)
-            // Decode token and get user info and exp
-            const decoded = jwt_decode(token)
-            // console.log(decoded.exp)
-            // Set user and isAuthenticated
-            store.dispatch(setCurrentUser(decoded))
-            // Check for expired token
-            const currentTime = Date.now() / 1000 // to get in milliseconds
+  useEffect(() => {
+    if (localStorage.jwtToken) {
+      // Set auth token header auth
+      const token = localStorage.jwtToken;
+      setAuthToken(token);
+      // Decode token and get user info and exp
+      const decoded = jwt_decode(token);
+      // console.log(decoded.exp)
+      // Set user and isAuthenticated
+      store.dispatch(setCurrentUser(decoded));
+      // Check for expired token
+      const currentTime = Date.now() / 1000; // to get in milliseconds
 
-            if (decoded.exp < currentTime) {
-                // Logout user
-                store.dispatch(logoutUser())
-                // Redirect to login
-                window.location.href = '/login'
-            }
-        }
-    }, [])
-    const history = useHistory()
-    const auth = useSelector((state) => state.auth)
-    // Check for token to keep user logged in
-
-    if (auth.isAuthenticated) {
-        history.push('/dashboard')
+      if (decoded.exp < currentTime) {
+        // Logout user
+        store.dispatch(logoutUser());
+        // Redirect to login
+        window.location.href = "/login";
+      }
     }
-    return (
-        <Fragment>
-            <Navbar />
-            <div class="home-component">
-                <h1>Welcome to Linktory</h1>
+  }, []);
+  const history = useHistory();
+  const auth = useSelector((state) => state.auth);
+  // Check for token to keep user logged in
 
-                <div className="hero">
-                    <Box bg="red" w="100%" p={4} color="white">
-                        <p>Tired of storing links in the browser?</p>
-                        <p>
-                            Get a secure account for storing and visiting your
-                            favourite and most used sites easily.
-                        </p>
-                    </Box>
-                </div>
+  if (auth.isAuthenticated) {
+    history.push("/dashboard");
+  }
+  return (
+    <Fragment>
+      <Navbar />
+      <div class="home-component">
+        <h1>Welcome to Linktory</h1>
 
-                <p className="onboard-link">
-                    <Link to="/login">Login </Link>
-                    <br />
-                    <Link to="/signin"> Create an account</Link>
-                </p>
-            </div>
-            <span>
-                <Link to="/dashboard">Dashboard</Link>
-            </span>
-        </Fragment>
-    )
-})
-export default Home
+        <div className="hero">
+          <Box bg="red" w="100%" p={4} color="white">
+            <p>Tired of storing links in the browser?</p>
+            <p>
+              Get a secure account for storing and visiting your favourite and
+              most used sites easily.
+            </p>
+          </Box>
+          <Box bg="red" w="100%" p={4} mt={2} color="white">
+            <p>Sync across different devices</p>
+          </Box>
+        </div>
+
+        <p className="onboard-link">
+          <Link to="/login">Login </Link>
+          <br />
+          <Link to="/signin"> Create an account</Link>
+        </p>
+      </div>
+      <span>
+        <Link to="/dashboard">Dashboard</Link>
+      </span>
+    </Fragment>
+  );
+});
+export default Home;
