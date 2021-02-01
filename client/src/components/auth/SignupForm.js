@@ -1,8 +1,17 @@
 import React, { useState, useEffect, Fragment } from "react";
 import PropTypes from "prop-types";
+import {
+  Button,
+  Box,
+  Center,
+  Input,
+  FormControl,
+  FormLabel,
+  FormErrorMessage,
+  Text,
+} from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../Navbar";
-import "../../styles/login.css";
 import { Link, withRouter, useHistory } from "react-router-dom";
 import { registerUser } from "../../redux/actions/authActions";
 
@@ -52,65 +61,74 @@ function SignIn() {
   return (
     <Fragment>
       <Navbar />
-      <div>
+      <Box w="50%" p="2" m="auto">
         <form onSubmit={handleSubmit} method="POST" action="/api/user/register">
-          <div className="form-control">
-            <label htmlFor="Name">Name</label>
-            <input
-              id="Name"
-              type="text"
+          <FormControl id="name">
+            <FormLabel>Name</FormLabel>
+            <Input
               name="name"
               error={errors.name}
               value={name}
               onChange={handleChange}
             />
-          </div>
-          <div className="form-control">
-            <label htmlFor="Email">Email</label>
-            <input
-              id="Email"
+          </FormControl>
+          <FormControl id="email">
+            <FormLabel>Email</FormLabel>
+            <Input
               type="email"
               name="email"
               error={errors.email}
               value={email}
               onChange={handleChange}
             />
-          </div>
-          <div className="form-control">
-            <label htmlFor="Password">Password</label>
-            <input
-              id="Password"
+          </FormControl>
+
+          <FormControl id="password">
+            <FormLabel>Password</FormLabel>
+            <Input
               type="password"
               name="password"
               error={errors.password}
               value={password}
               onChange={handleChange}
             />
-          </div>
-          <div class="form-control">
-            <label htmlFor="Confirm-Password">Confirm Your Password</label>
-            <input
-              id="Confirm-Password"
+          </FormControl>
+
+          <FormControl id="password2">
+            <FormLabel>Confirm Password</FormLabel>
+            <Input
               type="password"
               name="password2"
               error={errors.password2}
               value={password2}
               onChange={handleChange}
             />
-          </div>
-          <button
+          </FormControl>
+          <Button
             type="submit"
             onClick={() => dispatch(registerUser(newUser, history))}
-            className="submit-btn"
+            mt="2"
+            bg="blue.600"
+            color="white"
+            w="100%"
+            _hover={{
+              bg: "blue.400",
+              color: "grey.300",
+            }}
           >
-            <strong>Sign In</strong>
-          </button>
+            Sign In
+          </Button>
           <br />
-          <p>
-            Already signed up ? <Link to="/login">Log in</Link>
-          </p>
+          <Center>
+            <Text mt="2">
+              Already signed up?
+              <Button bg="yellow.300">
+                <Link to="/login">Log in</Link>
+              </Button>
+            </Text>
+          </Center>
         </form>
-      </div>
+      </Box>
     </Fragment>
   );
 }

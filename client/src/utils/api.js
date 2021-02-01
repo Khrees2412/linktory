@@ -1,13 +1,16 @@
-import axios from 'axios'
-import store from '../redux/store'
-import { LOG_OUT } from '../redux/actions/types'
+import axios from "axios";
+import store from "../redux/store";
+import { LOG_OUT } from "../redux/actions/types";
+
+const token = localStorage.getItem("token");
 
 const api = axios.create({
-    baseURL: '/api/user',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-})
+  baseURL: "/api/user",
+  headers: {
+    "Content-Type": "application/json",
+    // Authorization: `Bearer${token}`,
+  },
+});
 /**
  intercept any error responses from the api
  and check if the token is no longer valid.
@@ -17,13 +20,13 @@ const api = axios.create({
 **/
 
 api.interceptors.response.use(
-    (res) => res,
-    (err) => {
-        if (err.response.status === 401) {
-            store.dispatch({ type: LOG_OUT })
-        }
-        return Promise.reject(err)
+  (res) => res,
+  (err) => {
+    if (err.response.status === 401) {
+      store.dispatch({ type: LOG_OUT });
     }
-)
+    return Promise.reject(err);
+  }
+);
 
-export default api
+export default api;

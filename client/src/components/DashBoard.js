@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { NavLink } from "react-router-dom";
-import "../styles/Dashboard.css";
+import { Heading, Flex, Box, Button, Center, Spacer } from "@chakra-ui/react";
+
 import { logoutUser } from "../redux/actions/authActions";
 import { useDispatch } from "react-redux";
 
@@ -9,26 +10,28 @@ export default function DashBoard() {
 
   return (
     <Fragment>
-      <div className="dash-container">
-        <div className="dash-link">
-          <NavLink to="/view_links">View All Links</NavLink>
-        </div>
+      <Flex bg="blue.800" color="gold" p="5">
+        <Box p="2" m="2" mt="4">
+          <NavLink to="/view_links">View All </NavLink>
+        </Box>
 
-        <div className="dash-link">
-          <NavLink to="/add_Link">Add New Link</NavLink>
-        </div>
+        <Box p="2" m="2" mt="4">
+          <NavLink to="/add_Link">Add New </NavLink>
+        </Box>
 
-        <div className="dash-link">
+        <Box p="2" m="2" mt="4">
           <NavLink to="/settings">Settings</NavLink>
-        </div>
-
-        <div className="dash-link">
-          <button className="logout-btn" onClick={() => dispatch(logoutUser())}>
+        </Box>
+        <Spacer />
+        <Box p="2">
+          <Button className="logout-btn" onClick={() => dispatch(logoutUser())}>
             LOG OUT
-          </button>
-        </div>
-        <h1>This is your dashboard</h1>
-      </div>
+          </Button>
+        </Box>
+      </Flex>
+      <Center bg="blue.500" color="yellow.600">
+        <Heading fontSize="2xl">Your DashBoard</Heading>
+      </Center>
     </Fragment>
   );
 }

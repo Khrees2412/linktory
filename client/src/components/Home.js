@@ -1,8 +1,8 @@
 import React, { Fragment, useEffect } from "react";
 import Navbar from "./Navbar";
-import { Link, useHistory } from "react-router-dom";
-import "../styles/Home.css";
-import { Box } from "@chakra-ui/react";
+import { useHistory } from "react-router-dom";
+// import "../styles/Home.css";
+import { Box, Link, Button, Text } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import jwt_decode from "jwt-decode";
 import setAuthToken from "../utils/setAuthToken";
@@ -41,31 +41,38 @@ const Home = React.memo(() => {
   return (
     <Fragment>
       <Navbar />
-      <div class="home-component">
-        <h1>Welcome to Linktory</h1>
+      <Box bg="blue.500">
+        <Text
+          fontSize="5xl"
+          p="10"
+          mb="5"
+          fontWeight="bold"
+          color="white"
+          align="center"
+        >
+          Create and store the links to your favourite sites
+        </Text>
+      </Box>
+      <Box bg="blue.600" p="10" color="white">
+        <Text fontSize="3xl">Tired of storing links in the browser?</Text>
+        <Text fontSize="3xl">
+          Get a secure account for storing and visiting your favourite and most
+          used sites easily.
+        </Text>
+      </Box>
+      <Box bg="blue.600" p="10" mt={4} color="white">
+        <Text fontSize="3xl">Sync across different devices</Text>
+      </Box>
 
-        <div className="hero">
-          <Box bg="red" w="100%" p={4} color="white">
-            <p>Tired of storing links in the browser?</p>
-            <p>
-              Get a secure account for storing and visiting your favourite and
-              most used sites easily.
-            </p>
-          </Box>
-          <Box bg="red" w="100%" p={4} mt={2} color="white">
-            <p>Sync across different devices</p>
-          </Box>
-        </div>
-
-        <p className="onboard-link">
-          <Link to="/login">Login </Link>
-          <br />
-          <Link to="/signin"> Create an account</Link>
-        </p>
-      </div>
-      <span>
-        <Link to="/dashboard">Dashboard</Link>
-      </span>
+      <Box m="auto" w="50%">
+        {" "}
+        <Button bg="blue.400" m="2" p="2">
+          <Link href="/login">Login </Link>
+        </Button>
+        <Button bg="blue.400" m="2" p="2">
+          <Link href="/signin"> Create an account</Link>
+        </Button>
+      </Box>
     </Fragment>
   );
 });

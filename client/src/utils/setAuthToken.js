@@ -13,17 +13,17 @@ const setAuthToken = (token) => {
 export default setAuthToken
 */
 
-import api from './api'
+import api from "./api";
 
 const setAuthToken = (token) => {
-    if (token) {
-        api.defaults.headers.common['x-auth-token'] = token
-        api.defaults.headers.common['Authorization'] = token
-        localStorage.setItem('token', token)
-    } else {
-        delete api.defaults.headers.common['x-auth-token']
-        localStorage.removeItem('token')
-    }
-}
+  if (token) {
+    api.defaults.headers.common["x-auth-token"] = token;
+    // api.defaults.headers.common['Authorization'] = token
+    localStorage.setItem("token", token);
+  } else {
+    delete api.defaults.headers.common["x-auth-token"];
+    localStorage.removeItem("token");
+  }
+};
 
-export default setAuthToken
+export default setAuthToken;

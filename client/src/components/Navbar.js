@@ -1,25 +1,27 @@
-import React, { Fragment } from 'react'
-//import {Link} from "react-router-dom";
-
+import React, { Fragment } from "react";
+import { Link, Text, Flex, Box, HStack, Spacer } from "@chakra-ui/react";
 export default function Navbar() {
-    return (
-        <Fragment>
-            <nav className="home-navbar">
-                <div className="brand-logo">
-                    <strong>LINKTORY</strong>
-                </div>
-                <ul className="menu">
-                    <li>
-                        <a href="/">Use-cases</a>
-                    </li>
-                    <li>
-                        <a href="/">About</a>
-                    </li>
-                    <li>
-                        <a href="/login">Login</a>
-                    </li>
-                </ul>
-            </nav>
-        </Fragment>
-    )
+  return (
+    <Fragment>
+      <Flex bg="blue.500" p="5" justify="around">
+        <Box>
+          <Text fontSize={["2xl", "4xl"]} fontWeight="bold" color="gold">
+            LINKTORY
+          </Text>
+        </Box>
+        <Spacer />
+        <HStack spacing={[5, 10]} color="yellow.400">
+          <Box>
+            <Link href="/">Use-cases</Link>
+          </Box>
+          <Box>
+            <Link href="/">About</Link>
+          </Box>
+          <Box>
+            <Link href="/login">Login</Link>
+          </Box>
+        </HStack>
+      </Flex>
+    </Fragment>
+  );
 }

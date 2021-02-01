@@ -1,8 +1,16 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../Navbar";
-import "../../styles/login.css";
-//import { Box } from "@chakra-ui/core";
+import {
+  Button,
+  Box,
+  Input,
+  FormControl,
+  FormLabel,
+  FormErrorMessage,
+  Text,
+  Center,
+} from "@chakra-ui/react";
 import { Link, withRouter, useHistory } from "react-router-dom";
 import { loginUser } from "../../redux/actions/authActions";
 
@@ -56,45 +64,56 @@ function LogIn() {
   return (
     <Fragment>
       <Navbar />
-      <div>
+      <Box w="50%" p="2" m="auto">
         <form onSubmit={handleSubmit} method="POST" action="/api/user/login">
-          <div className="form-control">
-            <label htmlFor="Email">Email</label>
-            <input
+          <FormControl id="email">
+            <FormLabel>Email</FormLabel>
+            <Input
               type="email"
               name="email"
               error={errors.email}
               value={email}
               onChange={handleChange}
             />
-          </div>
-          <div className="form-control">
-            <label htmlFor="Password">Password</label>
+          </FormControl>
+          <FormControl>
+            <FormLabel>Password</FormLabel>
             <span className="red-text">
               {errors.password}
               {errors.passwordincorrect}
             </span>
-            <input
+            <Input
               type="password"
               name="password"
               error={errors.password}
               value={password}
               onChange={handleChange}
             />
-          </div>
-          <button
+          </FormControl>
+          <Button
             type="submit"
             onClick={() => validate()}
-            className="submit-btn"
+            mt="2"
+            bg="blue.600"
+            color="white"
+            w="100%"
+            _hover={{
+              bg: "blue.400",
+              color: "grey.300",
+            }}
           >
-            <strong>Log In</strong>
-          </button>
-          <br />
-          <p>
-            Don't yet have an account ? <Link to="/signin">Sign up here</Link>
-          </p>
+            Log In
+          </Button>
+          <Center>
+            <Text mt="2">
+              Need an account ?
+              <Button bg="yellow.300">
+                <Link to="/signin">Get One</Link>
+              </Button>
+            </Text>
+          </Center>
         </form>
-      </div>
+      </Box>
     </Fragment>
   );
 }
